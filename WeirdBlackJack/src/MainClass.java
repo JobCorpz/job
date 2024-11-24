@@ -58,8 +58,14 @@ public class MainClass
             playerHand.add(drawnCard);
             boolean doubleNextCard = false;
             
+           
             if (option == 1) {
-            	System.out.println("You drew a " + drawnCard.getCardName());  
+            	if(drawnCard.getCardName().startsWith("A") || drawnCard.getCardName().startsWith("E")) {
+            		System.out.println("You drew an " + drawnCard.getCardName());
+            	} else {
+            		System.out.println("You drew a " + drawnCard.getCardName());
+            	} 
+            	
             } else if (option == 2) {
             	if(drawnCard.getCardName().startsWith("A") || drawnCard.getCardName().startsWith("E")) {
             		System.out.println("You drew an " + drawnCard.getCardName() + " of " + drawnCard.getSuit());
@@ -67,6 +73,8 @@ public class MainClass
             		System.out.println("You drew a " + drawnCard.getCardName() + " of " + drawnCard.getSuit());
             	}
             }
+
+            
             
             int cardValue = drawnCard.applyCardEffect();
             
@@ -190,4 +198,3 @@ public class MainClass
 	}
 	
 }
-
