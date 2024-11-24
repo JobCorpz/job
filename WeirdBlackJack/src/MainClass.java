@@ -59,7 +59,7 @@ public class MainClass
             boolean doubleNextCard = false;
             
             if (option == 1) {
-            	System.out.println("You drew " + drawnCard.getCardName());  
+            	System.out.println("You drew a " + drawnCard.getCardName());  
             } else if (option == 2) {
             	if(drawnCard.getCardName().startsWith("A") || drawnCard.getCardName().startsWith("E")) {
             		System.out.println("You drew an " + drawnCard.getCardName() + " of " + drawnCard.getSuit());
@@ -90,11 +90,19 @@ public class MainClass
                 }
             } else {
             	if (doubleNextCard && drawnCard instanceof NumberCard) {
-                    cardValue *= 2;
-                    doubleNextCard = false;
-                    System.out.println("King effect activated! The value of this card is doubled: " + cardValue);
-                }
-                currentHandTotal += cardValue;
+            	    
+            	    if (drawnCard.getSuit().equals("Spades") || drawnCard.getSuit().equals("Clubs")) {
+            	        cardValue *= 2; // Black card: double positive value
+            	    } else {
+            	        cardValue *= 2; // Red card: double negative value
+            	    }
+            	    doubleNextCard = false;
+            	    System.out.println("King effect activated! The value of this card is doubled: " + cardValue);
+            	    currentHandTotal += cardValue;
+            	} else {
+            	    currentHandTotal += drawnCard.applyCardEffect();
+            	}
+
             }
 
 			//Code for checking whether they've got Blackjack, or gone bust should go here. If they haven't, ask if they want to draw again as per coursework spec!
@@ -182,3 +190,4 @@ public class MainClass
 	}
 	
 }
+

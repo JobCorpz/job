@@ -30,7 +30,11 @@ public class SuitedCard extends CardSuperItem
             // Double the next card's value 
             return -99; 
         } else {
-            return getValue();
+        	if (getSuit().equals("Spades") || getSuit().equals("Clubs")) {
+                return getValue(); // Black card: add value
+            } else {
+                return -(getValue() / 2); // Red card: deduct half value
+            }
         }
     }
 

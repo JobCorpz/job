@@ -24,7 +24,16 @@ public class NumberCard extends CardSuperItem
 
 	@Override
 	public int applyCardEffect() {
-		return getValue();
+		String suit = getSuit();
+	    int value = getValue();
+	    if (suit.equals("Spades") || suit.equals("Clubs")) {
+	        // Black card
+	        return value;
+	    } else if (suit.equals("Diamonds") || suit.equals("Hearts")){
+	        // Red card
+	        return -(value / 2); 
+	    }
+	    return value;
 	}
 
 	@Override
@@ -40,3 +49,4 @@ public class NumberCard extends CardSuperItem
 	
 	
 }
+ 
