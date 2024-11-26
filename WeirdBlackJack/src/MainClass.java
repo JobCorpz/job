@@ -19,7 +19,7 @@ public class MainClass
 		 */
 		Scanner scanner = new Scanner(System.in);
 		int currentHandTotal = 0;
-		CardSuperItem drawnCard;
+		CardSuperItem drawnCard = null;
 		Random random = new Random();
 		
 		
@@ -149,7 +149,11 @@ public class MainClass
 		//Remember to print all the cards in a player's hand here, and to close any scanners you've opened!
 		System.out.println("Your final hand:");
         for (CardSuperItem card : playerHand) {
-            System.out.println("A " + card.getCardName());
+        	if (card.getCardName().startsWith("A") || card.getCardName().startsWith("E")) {
+        	        System.out.println("An " + card.getCardName());
+        	    } else {
+        	        System.out.println("A " + card.getCardName());
+        	    }
         }
         
         scanner.close();
@@ -184,7 +188,10 @@ public class MainClass
             String suit = suits[suitIndex];
 
             // number cards
-            for (int value = 1; value <= 6; value++) {
+            for (int value = 1; value <= 3; value++) {
+                drawDeck.add(new SuitedCard(value, CardsDetails.cardsNames[value - 1], suit));
+            }
+            for (int value = 7; value <= 9; value++) {
                 drawDeck.add(new SuitedCard(value, CardsDetails.cardsNames[value - 1], suit));
             }
 
@@ -192,6 +199,7 @@ public class MainClass
             for (int i = 10; i <= 12; i++) {
                 drawDeck.add(new SuitedCard(-99, CardsDetails.cardsNames[i], suit));
             }
+            
         }
 
 
